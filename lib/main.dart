@@ -1,39 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:state_notifier/state_notifier.dart';
 
-void main() => runApp(CounterApp());
+final counterProvider = StateNotifierProvider((_) => Counter());
 
-class CounterApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(title: 'Riverpod + FlutterHooks Sample'),
-    );
-  }
+class Counter extends StateNotifier<int> {
+  Counter() : super(0);
+  void increment() => state++;
 }
 
-class MyHomePage extends HookWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-  final String title;
+void main() {
+  runApp(
+    ProviderScope(
+      child: CounterApp(),
+    ),
+  );
+}
 
+// Note: CounterApp is a HookWidget, from flutter_hooks.
+class CounterApp extends HookWidget {
   @override
   Widget build(BuildContext context) {
-    final counter = useState(0);
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
+    final state = useProvider(counterProvider.state);
+    final counter = useProvider(counterProvider);
+
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: Text('CounterApp')),
+        body: Center(
+          child: Text(state.toString()),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed:() => counter.increment(),
+          child: Icon(Icons.add),
+        ), // This trailing comma makes auto-formatting nicer for build methods.
       ),
-      body: Center(
-        child: Text(counter.value.toString()),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => counter.value++,
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

@@ -1,16 +1,33 @@
-# riverpod_flutterhooks_example
+# Using Riverpod and Flutter Hooks, as a first step.
 
-A new Flutter project.
+I'm going to try to make a counter app.
 
-## Getting Started
+## Flutter state management patterns
 
-This project is a starting point for a Flutter application.
+What state management patterns do you all use in Flutter?
+There are lots of state management patterns in Flutter.
+Too big. w
 
-A few resources to get you started if this is your first Flutter project:
+- StatefulWidget
+- Redux
+- BLoC(Stream/InheritedWidget) + Provider
+- ChangeNotifier + Provider
+- StateNotifier + freezed + Provider
+- StateNotifier + Flutter Hooks + Riverpod [new]
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+I've been primarily using "StateNotifier + freezed + Provider".
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+A new pattern is emerging.
+
+In these days, a new star has emerged in the state management pattern that shines like a kiraboshi.
+Riverpod and Flutter Hooks.
+Lately, there's been a lot of talk in the Flutter community about Riverpod and Flutter Hooks.
+
+## What is Riverpod?
+
+An evolution of Provider, by the author of Provider.
+Provider, but different
+Riverpod Official Page
+https://riverpod.dev
+
+Translated with www.DeepL.com/Translator (free version)
